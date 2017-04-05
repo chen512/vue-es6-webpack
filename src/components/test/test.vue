@@ -3,10 +3,12 @@
     <div class="test">
       <div>this is template body</div>
       <ul>
-      <li class="test-data" v-for="test in test">{{test.username}}</li>
       </ul>
     </div>
-    <foot :test="test"></foot>
+    <p style="backgroud:black"></p>
+    <foot v-on:childsay="listenToBoy"></foot>
+    <p>{{child}}</p>
+    <div>end</div>
   </div>
 </template>
 <style lang="stylus" rel="stylesheet/stylus">
@@ -16,6 +18,8 @@
     text-align center
     background red
     padding 1rem
+  p
+    background-color aqua
 
 
 
@@ -27,13 +31,19 @@
        data () {
             return {
                 test: [],
-                msg: 'hello vue'
+                test1: '',
+                msg: 'hello vue',
+                childWords: '',
+                child: ''
             };
         },
+      methods: {
+        listenToBoy: function (msg) {
+          this.child = msg;
+        }},
        created() {
           this.$http.get('/api/ratings').then((response) => {
             this.test = response.body.data;
-            debugger;
             console.log('1112312');
         });
       },

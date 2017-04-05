@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>this is template footer</div>
-        <div @click="showWorld">{{msg}}</div>
+        <div v-on:click="onClick">click</div>
         <div>{{test}}</div>
       <div v-show="flag">layear</div>
     </div>
@@ -13,24 +13,26 @@
     export default{
         props: {
           test: {
-            type: Number
+            type: Array
           }
         },
         data() {
             return {
                 flag: false,
-                msg: 'hello vue'
+                msg: 'i love u matt1',
+                msg1: 'i love u matt'
             };
         },
         methods: {
           showWorld: function (e) {
             this.flag = true;
-            console.log(this.test);
+            this.msg1 = '132231131123232131231132';
+          },
+          onClick: function() {
+            this.$emit('childsay', this.msg);
           }
         },
       create() {
-        debugger;
-        console.log(this.flag);
       }
     };
 </script>
